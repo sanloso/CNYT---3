@@ -1,5 +1,59 @@
 from sys import stdin
 import math
+tupla1 = [3,2]
+tupla2 = [8,6.3]
+
+vector1 = [[6,3],[0,0],[5,1],[4,0]]
+vector2 = [[3,-4.5],[4,6],[0,2]]
+
+mat1 = [ [ [6,3], [3,-4.5] ] , [ [0,0], [4,6] ] , [ [5,1], [0,2] ] ]
+mat2 = [ [ [1,0], [2,-4.5] ] , [ [8,21], [0,8] ] , [ [5,1], [0,2] ] ]
+
+def adicionMatrices(mat1, mat2):
+    c = []
+    for i in range (len(mat1)):
+        if len (mat1[i]) == len (mat2[i]):
+            c.append(adicionVectores(mat1[i], mat2[i]))
+        else:
+            print('suma no posible')
+    print(c)
+    return c
+
+def inversaMatrices(mat1):
+    c = []
+    for i in range(len(mat1)):
+        c.append(inversaVectores(mat1[i]))
+    print(c)
+
+###### Vectores
+
+def multiplicacionEscalar(tupla1, vector1):
+    c = []
+    for i in range(len(vector1)):
+        c.append(multiplicar(tupla1, vector1[i]))
+
+    return c
+
+def  inversaVectores(vector1):
+    c = []
+    for i in range(len(vector1)):
+        aux = []
+        for j in range(len(vector1[i])):
+            aux.append(vector1[i][j]*-1)
+        c.append(aux)
+        
+    return c
+
+def adicionVectores(vector1, vector2):
+    c = []
+    if len(vector1) == len (vector2):
+        for i in range(len(vector1)):
+            c.append(suma(vector1[i], vector2[i]))
+    else:
+        print('Esta adicion no es posible de realizar')
+    return c
+
+###### Operaciones
 
 def convertor(tupla1):
     la = modulo(tupla1)
@@ -74,36 +128,40 @@ def menu():
     opc = int(stdin.readline().strip())
     while (opc != 0):
         if opc == 1:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
-            tupla2 = [float(x) for x in stdin.readline().split(",") ]
             suma(tupla1, tupla2)
             opc = int(stdin.readline().strip())
         elif opc == 2:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
-            tupla2 = [float(x) for x in stdin.readline().split(",") ]
             resta(tupla1, tupla2)
             opc = int(stdin.readline().strip())
         elif opc == 3:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
-            tupla2 = [float(x) for x in stdin.readline().split(",") ]
             multiplicar(tupla1, tupla2)
             opc = int(stdin.readline().strip())
-        elif opc == 4:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
-            tupla2 = [float(x) for x in stdin.readline().split(",") ]
+        elif opc == 4:        
             dividir(tupla1, tupla2)
             opc = int(stdin.readline().strip())
         elif opc == 5:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
             modulo(tupla1)
             opc = int(stdin.readline().strip())
         elif opc == 6:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
             conjugado(tupla1)
             opc = int(stdin.readline().strip())
         elif opc == 7:
-            tupla1 = [ float(x) for x in stdin.readline().split(",") ]
             convertor(tupla1)
+            opc = int(stdin.readline().strip())
+        elif opc == 8:
+            adicionVectores(vector1, vector2)
+            opc = int(stdin.readline().strip())
+        elif opc == 9:
+            inversaVectores(vector1)
+            opc = int(stdin.readline().strip())
+        elif opc == 10:
+            multiplicacionEscalar(tupla1,vector1)
+            opc = int(stdin.readline().strip())
+        elif opc == 11:
+            adicionMatrices(mat1,mat2)
+            opc = int(stdin.readline().strip())
+        elif opc == 12:
+            inversaMatrices(mat1)
             opc = int(stdin.readline().strip())
         else:
             print("opcion incorrecta")
@@ -119,6 +177,11 @@ def main():
     print("5 modulo")
     print("6 conjugado")
     print("7 cartesiano a polar")
+    print("8 adicion de vectores")
+    print("9 inversa del vector")
+    print("10 multiplicacion escalar por vector")
+    print("11 adicion de matrices")
+    print("12 inversa de la matriz")
     print("0 salir")
     menu()
 
