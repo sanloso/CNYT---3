@@ -1,12 +1,12 @@
 from sys import stdin
 import math
-tupla1 = [3,2]
-tupla2 = [8,6.3]
+tupla1 = [10,0]
+tupla2 = [-6.08,-28.56]
 
 vector1 = [[6,3],[0,0],[5,1],[4,0]]
 vector2 = [[3,-4.5],[4,6],[0,2]]
 
-mat1 = [ [ [6,3], [3,-4.5] ] , [ [0,0], [4,6] ] , [ [5,1], [0,2] ] ]
+mat1 = [ [ [6,3], [3,-4.5] ] , [ [0,0], [4,6] ]  ]
 mat2 = [ [ [1,0], [2,-4.5] ] , [ [8,21], [0,8] ] , [ [5,1], [0,2] ] ]
 
 def adicionMatrices(mat1, mat2):
@@ -16,14 +16,34 @@ def adicionMatrices(mat1, mat2):
             c.append(adicionVectores(mat1[i], mat2[i]))
         else:
             print('suma no posible')
-    print(c)
+
     return c
 
 def inversaMatrices(mat1):
     c = []
     for i in range(len(mat1)):
         c.append(inversaVectores(mat1[i]))
+    
+    return c
+
+def multiplicacion_escalar_matriz(tupla1, mat1):
+    c = []
+    for i in range(len(mat1)):
+        c.append(multiplicacionEscalar(tupla1, mat1[i]))
+
+    return c
+
+def matTranspuesta (mat1):
+    c = []
+    for i in range(len(mat1[0])):
+        aux = []
+        for j in range(len(mat1)):
+            aux.append(mat1[j][i])
+        c.append(aux)
+        
     print(c)
+    
+            
 
 ###### Vectores
 
@@ -163,6 +183,12 @@ def menu():
         elif opc == 12:
             inversaMatrices(mat1)
             opc = int(stdin.readline().strip())
+        elif opc == 13:
+            multiplicacion_escalar_matriz(tupla1,mat1)
+            opc = int(stdin.readline().strip())
+        elif opc == 14:
+            matTranspuesta(mat2)
+            opc = int(stdin.readline().strip())
         else:
             print("opcion incorrecta")
             break
@@ -182,6 +208,8 @@ def main():
     print("10 multiplicacion escalar por vector")
     print("11 adicion de matrices")
     print("12 inversa de la matriz")
+    print("13 multiplicacion escalar matriz")
+    print("14 transpuesta de una matriz")
     print("0 salir")
     menu()
 
