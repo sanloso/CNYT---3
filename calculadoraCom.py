@@ -6,8 +6,9 @@ tupla2 = [0.7071067811865475,0]
 vector1 = [[6,3],[0,0],[5,1],[4,0]]
 vector2 = [[3,-4.5],[4,6],[0,2]]
 
-mat1 = [ [ [0.7071067811865475,0], [0.7071067811865475,0] ] , [ [0.7071067811865475,0], [-0.7071067811865475,0] ]]
-mat2 = [ [ [0.7071067811865475,0], [0.7071067811865475,0] ] , [ [0.7071067811865475,0], [-0.7071067811865475,0] ]]
+c = [ [[1,0],[0,0]], [[0,0],[0,0]]]
+mat1 = [ [[1/(2**0.5),0],[1/(2**0.5),0]], [[1/(2**0.5),0],[-1/(2**0.5),0]] ]
+mat2 = [ [[0,0],[1,0]], [[1,0],[0,0]] ]
 
 def tensorMatriz(mat1, mat2):
     c = []
@@ -50,7 +51,19 @@ def matTranspuesta (mat1):
         c.append(aux)
     return c
     
-            
+
+def matrizProducto(mat1, mat2):
+    if len(mat1[0]) == len(mat2):
+        c = []
+        for i in range(len(mat1[0])):
+            aux = []
+            for j in range(len(mat2)):
+                a = [0,0]
+                for k in range(len(mat2[0])):
+                    a = suma(multiplicar(mat1[i][k], mat2[k][j]), a)
+                aux.append(a)
+            c.append(aux)
+        return c
 
 ###### Vectores
 
@@ -160,5 +173,9 @@ def suma(tupla1, tupla2):
 
 def main():
     
-    tensorMatriz(mat1, mat2)
+    m1 = tensorMatriz(mat1, mat1)
+    m2 = tensorMatriz(mat1, mat2)
+
+    matm1 = matrizProducto(m2, m1)
+    matm2 = matrizProducto(matm1, c)
 main()
