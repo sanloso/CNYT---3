@@ -1,5 +1,3 @@
-### CNYT---3
-
 # Calculadora de numeros complejos
 Este programa consisite en poder calcular diferentes operaciones con numeros complejos, siendo posible realizarlas con vectores o matrices.
 
@@ -7,7 +5,9 @@ El programa esta dividido en dos partes, una es la libreria con todas sus funcio
 
 Los numeros estan compuestos en forma de tupla **[a,b]** en donde **a** sera la parte real y **b** sera la parte imaginaria.
 
-En el siguiente programa se podran encontrar las siguientes funciones:
+En el programa se podran encontrar las siguientes funciones:
+
+### Operaciones basicas
 1. **Sumar numeros complejos:**
 > Dada una pareja de numeros complejos **[a,b]** y **[c,d]** la funcion retornara la suma de la pareja de numeros complejos de la forma **[e,f]**.
 
@@ -32,6 +32,7 @@ En el siguiente programa se podran encontrar las siguientes funciones:
 8. **Fase de un numero complejo:**
 >Dado un numero complejo **[a,b]** la funcion retornara la fase del numero complejo de la forma **[c,d]**.
 
+### Operacion de vectores complejos
 9. **Adición de vectores complejos:**
 >Dada una pareja de vectores complejos **[[a1, b1], [a2, b2], [an, bn]]** y **[[c1, d1], [c2, d2], [cn, dn]]** la funcion retornara la suma de la pareja de vectores complejos de la forma **[[e1, f1], [e2, f2], [en, fn]]**.
 
@@ -59,6 +60,7 @@ En el siguiente programa se podran encontrar las siguientes funciones:
 17. **Distancia entre dos vectores:**
 > Dada una pareja de vectores complejos **[[a1, b1], [a2, b2], [an, bn]]** y **[[c1, d1], [c2, d2], [cn, dn]]** la funcion retornara la distancia de la pareja de vectores complejos de la forma **a**.
 
+### Operaciones de matrices complejas
 18 . **Adición de matrices complejas:** [[[a1,b1],[a2,b2]],[[a3,b3],[an,bn]]] / [[[c1,d1],[c2,d2]],[[c3,d3],[cn,dn]]]
 > Dada una pareja de matrices complejas **[[[a1,b1],[a2,b2]],[[a3,b3],[an,bn]]]** y **[[[c1,d1],[c2,d2]],[[c3,d3],[cn,dn]]]** la funcion retornara la suma de la pareja de matrices complejas de la forma **[[[e1,f1],[e2,f2]],[[e3,f3],[en,fn]]]**.
 
@@ -89,3 +91,5 @@ En el siguiente programa se podran encontrar las siguientes funciones:
 27. **Revisar si una matriz es Hermitiana:**
 > Dada una matriz compleja **[[[a1,b1],[a2,b2]],[[a3,b3],[an,bn]]]** la funcion retornara si la matriz compleja es hermitiana.
 
+# Autor
+Santiago López Osorio
