@@ -1,22 +1,14 @@
 from sys import stdin
 import math
-tupla1 = [0.7071067811865475,0]
-tupla2 = [0.7071067811865475,0]
+tupla1 = [-2,9]
+tupla2 = [-3,-8]
 
-vector1 = [[6,3],[0,0],[5,1],[4,0]]
-vector2 = [[3,-4.5],[4,6],[0,2]]
+vector1 = [[1, 5], [5, 1], [-8, 8]]
+vector2 = [[6, -7], [-1, 2], [-1, -2]]
 
-c = [ [[1,0],[0,0]], [[0,0],[0,0]]]
-mat1 = [ [[1/(2**0.5),0],[1/(2**0.5),0]], [[1/(2**0.5),0],[-1/(2**0.5),0]] ]
-mat2 = [ [[0,0],[1,0]], [[1,0],[0,0]] ]
+mat1 = [[[3,0],[3,1]],[[3,-1],[2,0]]]
+mat2 = [[[-1, -7], [-10, 1]], [[-8, -7], [-9, -8]]]
 
-def tensorMatriz(mat1, mat2):
-    c = []
-    for i in range(len(mat1)):
-        for j in range(len(mat2)):
-            c.append(tensorVector(mat1[i], mat2[j]))
-    print(c)
-    return c
 
 def adicionMatrices(mat1, mat2):
     c = []
@@ -65,13 +57,106 @@ def matrizProducto(mat1, mat2):
             c.append(aux)
         return c
 
+def conjugadaMatriz(mat1):
+    c = []
+    for i in range(len(mat1)):
+        c.append(conjugadoVector(mat1[i]))
+
+    return c
+
+def tensorMatriz(mat1, mat2):
+    c = []
+    for i in range(len(mat1)):
+        for j in range(len(mat2)):
+            c.append(tensorVector(mat1[i], mat2[j]))
+            
+    return c
+
+def igualMatriz(mat1, mat2):
+    if mat1 == mat2:
+        return True
+    return False
+
+def adjMatriz(mat1):
+    c = conjugadaMatriz(matTranspuesta(mat1))
+    return c
+
+def idMatriz(mat1):
+    for i in range (len (mat1)):
+        for j in range (len (mat1 [0])):
+            if mat1[i][i] == [1, 0]:
+                return True
+            else:
+                return False
+
+def unitariaMatriz(mat1):
+    if len(mat1) == lent(mat1[0]):
+        c = matrizProducto(mat1, adjMatriz(mat1))
+
+        return idMatriz(c)
+
+def hermitianMatriz(mat1):
+    if len(mat1) == len(mat1[0]):
+        aux = adjMatriz(mat1)
+
+        c = igualMatriz(aux, mat1)
+
+        return c
+
 ###### Vectores
+def distanciaVector(vector1, vector2):
+    if len(vector1) == len(vector2):
+        aux = []
+        c = 0
+        for i in range(len(vector1)):
+            aux.append(resta(vector1[i], vector2[i]))
+        c += normaVector(aux)
+        c = round(c,3)
+        return c
+
+def normaVector(vector1):
+    c = 0
+    aux = 0
+    for i in range(len(vector1)):
+        for j in range(len(vector1[i])):
+            aux = aux + (vector1[i][j])**2
+    c = aux**0.5
+    c = round(c,3)
+    
+    return c
+
+
+def prodInternoVector(vector1, vector2):
+    if len(vector1) != len(vector2):
+        print("no es posible")
+    else:
+        c = [0,0]
+        cvec = conjugadoVector(vector1)
+        for i in range(len(vector1)):
+            c = suma(c,multiplicar(cvec[i], vector2[i]))
+        return c
+
+
+def conjugadoVector(vector1):
+    c = []
+    for i in range(len(vector1)):
+        c.append(conjugado(vector1[i]))
+    return c
+        
 
 def tensorVector(vector1, vector2):
     c = []
     for i in range(len(vector1)):
         for j in range(len(vector2)):
             c.append(multiplicar(vector1[i], vector2[j]))
+    return c
+
+def transVector(vector1):
+    c = []
+    for i in range(len(vector1)):
+        aux = []
+        aux.append(vector1[i])
+        c.append(aux)
     return c
 
 def multiplicacionEscalar(tupla1, vector1):
@@ -101,10 +186,14 @@ def adicionVectores(vector1, vector2):
     return c
 
 ###### Operaciones
+def fase(tupla1):
+    c = math.atan2(tupla1[1], tupla1[0])
+    c = round(c,3)
+    return c
 
 def convertor(tupla1):
     la = modulo(tupla1)
-    phi = math.atan2(tupla1[1]/tupla1[0])
+    phi = math.degrees(math.atan(tupla1[1]/tupla1[0]))
     phi = round(phi, 3)
     c = [la,phi]
 
@@ -119,8 +208,8 @@ def modulo (tupla1):
     a = tupla1[0]**2
     b = tupla1[1]**2
     suma = a+b
-    
-    c = abs(math.sqrt(suma))
+
+    c = suma**0.5
     c = round(c,3)
 
     return c
@@ -138,17 +227,10 @@ def dividir(tupla1, tupla2):
     return c
 
 def multiplicar(tupla1, tupla2):
-    res1 = tupla1[0] * tupla2[0]
-    res2 = tupla1[0] * tupla2[1]
-    res3 = tupla1[1] * tupla2[0]
-    res4 = tupla1[1] * tupla2[1]
-
-    rest = res2 + res3
-    res4 = res4 * -1
-
-    res1 = res1 + res4
-
-    c = [res1, rest]
+    
+    res1 = (tupla1[0] * tupla2[0]) - (tupla1[1] * tupla2[1])
+    res2 = (tupla1[0] * tupla2[1]) + (tupla2[0] * tupla1[1])
+    c = [res1, res2]
 
     return c
 
@@ -171,11 +253,7 @@ def suma(tupla1, tupla2):
     return c
 
 
-def main():
-    
-    m1 = tensorMatriz(mat1, mat1)
-    m2 = tensorMatriz(mat1, mat2)
-
-    matm1 = matrizProducto(m2, m1)
-    matm2 = matrizProducto(matm1, c)
-main()
+##def main():
+##    print(hermitianMatriz(mat1))
+##    
+##main()
