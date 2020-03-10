@@ -4,11 +4,19 @@ import math
 ##tupla2 = [-3,-8]
 ##
 ##vector1 = [[1, 5], [5, 1], [-8, 8]]
-##vector2 = [[6, -7], [-1, 2], [-1, -2]]
+vector2 = [[2, 1], [-1, 2], [0, 1], [1,0], [3,-1], [2,0], [0,-2], [-2,1], [1,-3], [0,-1]]
 ##
 ##mat1 = [[[3,0],[3,1]],[[3,-1],[2,0]]]
 ##mat2 = [[[-1, -7], [-10, 1]], [[-8, -7], [-9, -8]]]
 
+def probabilidadPosicion(vector1, pos):
+    cont = 0
+    for i in range(len(vector1)):
+        cont += modulo1 (vector1[i])
+    aux = modulo1(vector1[pos])
+    c = (aux/cont)*100
+    c = round(c,3)
+    return c
 
 def adicionMatrices(mat1, mat2):
     c = []
@@ -29,6 +37,7 @@ def inversaMatrices(mat1):
 
 def multiplicacion_escalar_matriz(tupla1, mat1):
     c = []
+    
     for i in range(len(mat1)):
         c.append(multiplicacionEscalar(tupla1, mat1[i]))
 
@@ -203,6 +212,14 @@ def conjugado(tupla1):
     tupla1[1] = tupla1[1] * -1
 
     return tupla1
+
+def modulo1 (tupla1):
+    a = tupla1[0]**2
+    b = tupla1[1]**2
+    c = a+b
+
+    c = round(c,3)
+    return c
     
 def modulo (tupla1):
     a = tupla1[0]**2
@@ -253,7 +270,7 @@ def suma(tupla1, tupla2):
     return c
 
 
-##def main():
-##    print(hermitianMatriz(mat1))
-##    
-##main()
+def main():
+    print(probabilidadPosicion(vector2, 7))
+    
+main()
