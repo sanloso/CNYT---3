@@ -3,10 +3,10 @@ import math
 ##tupla1 = [-2,9]
 ##tupla2 = [-3,-8]
 ##
-vector1 = [[1/2**0.5, 0], [0, 1/2**0.5]]
-##vector2 = [[2, 1], [-1, 2], [0, 1], [1,0], [3,-1], [2,0], [0,-2], [-2,1], [1,-3], [0,-1]]
+##vector1 = [[1/2**0.5, 0], [0, 1/2**0.5]]
+vector2 = [[2, 1], [-1, 2], [0, 1], [1,0], [3,-1], [2,0], [0,-2], [-2,1], [1,-3], [0,-1]]
 ##
-mat1 = [[[2,0],[1,1]],[[1,-1],[3,0]]]
+##mat1 = [[[2,0],[1,1]],[[1,-1],[3,0]]]
 ##mat2 = [[[-1, -7], [-10, 1]], [[-8, -7], [-9, -8]]]
 
 def probabilidadPosicion(vector1, pos):
@@ -18,9 +18,8 @@ def probabilidadPosicion(vector1, pos):
     c = round(c,3)
     return c
 
-def askdjf (vector1, mat1):
+def transitar (vector1, mat1):
     aux = matrizProducto(vector1, mat1)
-    print(aux)
     b = conjugadoVector(aux)
     c = matrizProducto(vector1, b)
     return c
@@ -251,10 +250,7 @@ def dividir(tupla1, tupla2):
     return c
 
 def multiplicar(tupla1, tupla2):
-    print(tupla1, "--")
-    print(tupla2, "..")
     res1 = (tupla1[0] * tupla2[0]) - (tupla1[1] * tupla2[1])
-    print(res1)
     res2 = (tupla1[0] * tupla2[1]) + (tupla2[0] * tupla1[1])
     c = [res1, res2]
 
@@ -279,7 +275,7 @@ def suma(tupla1, tupla2):
     return c
 
 
-def main():
-    print(askdjf (vector1, mat1))
-    
-main()
+##def main():
+##    print(probabilidadPosicion(vector2, 7))
+##    
+##main()
